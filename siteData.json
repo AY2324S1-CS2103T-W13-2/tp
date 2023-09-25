@@ -144,6 +144,14 @@
       "headingKeywords": {}
     },
     {
+      "src": "team/laurenlim2112.md",
+      "title": "Lauren Lim Yi-Xing's Project Portfolio Page",
+      "headings": {
+        "project-tutorium": "Project: Tutorium"
+      },
+      "headingKeywords": {}
+    },
+    {
       "src": "tutorials/AddRemark.md",
       "title": "Tutorial: Adding a command",
       "headings": {
