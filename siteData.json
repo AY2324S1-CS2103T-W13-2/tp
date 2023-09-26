@@ -152,14 +152,6 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/tiwkangxu.md",
-      "title": "Tiw Kang Xu's Project Portfolio Page",
-      "headings": {
-        "project-tutorium": "Project: Tutorium"
-      },
-      "headingKeywords": {}
-    },
-    {
       "src": "tutorials/AddRemark.md",
       "title": "Tutorial: Adding a command",
       "headings": {
