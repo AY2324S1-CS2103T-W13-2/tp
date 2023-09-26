@@ -19,18 +19,17 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities:
+* Role: Project Advisor
 
-### Lauren Lim Yi-Xing
+### Jane Doe
 
-<img src="images/laurenlim2112.png" width="200px">
+<img src="images/johndoe.png" width="200px">
 
-[[github](http://github.com/laurenlim2112)]
-[[portfolio](team/laurenlim2112.md)]
+[[github](http://github.com/johndoe)]
+[[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities:
+* Role: Team Lead
+* Responsibilities: UI
 
 ### Johnny Doe
 
@@ -38,8 +37,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Data
 
 ### Jean Doe
 
@@ -48,8 +47,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Dev Ops + Threading
 
 ### James Doe
 
@@ -58,5 +57,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: UI
