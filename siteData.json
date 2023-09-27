@@ -10,7 +10,7 @@
         "tiw-kang-xu": "Tiw Kang Xu",
         "lauren-lim-yi-xing": "Lauren Lim Yi-Xing",
         "lin-chenyu": "Lin Chenyu",
-        "jean-doe": "Jean Doe",
+        "ng-chuan-xin": "Ng Chuan Xin",
         "james-doe": "James Doe"
       },
       "headingKeywords": {}
@@ -132,6 +132,14 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/chuanxinng.md",
+      "title": "Ng Chuan Xin's Project Portfolio Page",
+      "headings": {
+        "project-tutorium": "Project: Tutorium"
       },
       "headingKeywords": {}
     },
