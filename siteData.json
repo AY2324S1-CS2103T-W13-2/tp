@@ -11,7 +11,7 @@
         "lauren-lim-yi-xing": "Lauren Lim Yi-Xing",
         "lin-chenyu": "Lin Chenyu",
         "ng-chuan-xin": "Ng Chuan Xin",
-        "james-doe": "James Doe"
+        "kam-jia-yue": "Kam Jia Yue"
       },
       "headingKeywords": {}
     },
@@ -148,6 +148,14 @@
       "title": "John Doe's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/kamjiayue.md",
+      "title": "Tiw Kang Xu's Project Portfolio Page",
+      "headings": {
+        "project-tutorium": "Project: Tutorium"
       },
       "headingKeywords": {}
     },
