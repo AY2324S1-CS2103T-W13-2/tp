@@ -107,15 +107,15 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "ab-3-user-guide": "AB-3 User Guide",
+        "tutorium-user-guide": "Tutorium User Guide",
         "quick-start": "Quick start",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
         "adding-a-student-s-data-add": "Adding a student's data: add",
-        "listing-all-persons-list": "Listing all persons : list",
         "editing-a-student-s-data-edit": "Editing a student's data : edit",
         "searching-for-data-search": "Searching for data : search",
         "deleting-data-delete": "Deleting data : delete",
+        "grouping-data-group": "Grouping data : group",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
@@ -140,14 +140,6 @@
       "title": "Ng Chuan Xin's Project Portfolio Page",
       "headings": {
         "project-tutorium": "Project: Tutorium"
-      },
-      "headingKeywords": {}
-    },
-    {
-      "src": "team/johndoe.md",
-      "title": "John Doe's Project Portfolio Page",
-      "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
       "headingKeywords": {}
     },
