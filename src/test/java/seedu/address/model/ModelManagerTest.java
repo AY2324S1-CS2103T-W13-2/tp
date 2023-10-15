@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,7 +15,10 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordPredicate;
+import seedu.address.model.person.Student;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -26,6 +30,17 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+    }
+
+    @Test
+    public void getStudentByEitherNameOrIndex_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
+        Student lastStudent = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
+        Name nameLastPerson = lastStudent.getName();
+
+        assertEquals(lastStudent, model.getStudentFromFilteredPersonListByIndex(indexLastPerson).get());
+        assertEquals(lastStudent, model.getStudentFromFilteredPersonListByName(nameLastPerson).get());
     }
 
     @Test

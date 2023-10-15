@@ -1,10 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 
 /**
@@ -85,4 +88,18 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Student> predicate);
+
+    /**
+     * Get the student object from filtered student list by name if exists, return None if the student does not exist.
+     * @param name the name of the student the caller want to get.
+     * @return The student object in the filteredlist at the given index.
+     */
+    public Optional<Student> getStudentFromFilteredPersonListByName(Name name);
+
+    /**
+     * Get the student object from filtered student list by index if exists, return None if the student does not exist.
+     * @param index the index of the student the caller want to get.
+     * @return The student object in the filteredlist with the given name.
+     */
+    public Optional<Student> getStudentFromFilteredPersonListByIndex(Index index);
 }

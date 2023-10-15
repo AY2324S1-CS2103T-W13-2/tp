@@ -96,27 +96,15 @@ Examples:
 Edits an existing student's data in the address book.
 
 Format:
-1. `edit n/[NAME] or edit e/[EMAIL]` (firstly specify for which student you want to edit)
-2. `e/[NEW_EMAIL] or n/[NEW_NAME]` or `a/[NEW_ADDRESS]` or `t/[NEW_TAG]`  (change a particular field)
-3. `n/[NEW_NAME] e/[NEW_EMAIL]`  or `e/[NEW_EMAIL] t/[NEW_TAG] a/[NEW_ADRESS]` (change multiple fields)
+1. `edit INDEX prefix/[field name] or edit NAME prefix/[field name]` (you can either specify the student you want to edit by index or his/her name)
+3. `edit INDEX prefix1/[field1] prefix2/[field2]`  or `edit NAME prefix/[field] prefix/[field] prefix/[field]` (change multiple fields)
 
-* Edits the student with a specific name or email.
-  - `edit n/[NAME]`
-  - `edit e/[EMAIL]`
-* After the prompt “OK! Now you can edit NAME”
-  - `e/[NEW_EMAIL]`
-  - `n/[NEW_NAME]`
-  - `a/[NEW_ADDRESS]`
-  - `t/[NEW_TAG]`
-* Or you change multiple fields within one command:
-  - `n/[NEW_NAME] e/[NEW_EMAIL]`
-  - `e/[NEW_EMAIL] t/[NEW_TAG] a/[NEW_ADDRESS]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit n/joe` specify that you want to do edit operation on the student "joe", if there are more than one student named "joe", you will be prompted to specify student email further: `edit n/joe123@example.com`.
-*  `n/joey e/joey123@example.com` Edits the name and email of the student you specified earlier to be `joey` and `joey123@example.com`.
+*  `edit joee n/joe` specify that you want to edit joee's name to "joe".
+*  `edit 2 n/joey e/joey123@example.com` Edits the student(with index 2)'s name and email to be `joey` and `joey123@example.com`.
    ![result for 'edit Chuan Yuan'](images/ug_images/editChuanYuanResult.png)
 
 ### Searching for data : `search`

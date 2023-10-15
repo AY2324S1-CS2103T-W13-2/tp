@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
 
 /**
@@ -126,6 +129,27 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public Optional<Student> getStudentFromFilteredPersonListByName(Name name) {
+        Optional<Student> targetStudent = Optional.ofNullable(null);
+        for (Student student : filteredStudents) {
+            if (student.getName().equals(name)) {
+                targetStudent = Optional.of(student);
+                break;
+            }
+        }
+        return targetStudent;
+    }
+
+    @Override
+    public Optional<Student> getStudentFromFilteredPersonListByIndex(Index index) {
+        int zerobasedIndex;
+        if (index == null || (zerobasedIndex = index.getZeroBased()) < 0 || zerobasedIndex >= filteredStudents.size()) {
+            return Optional.ofNullable(null);
+        }
+        return Optional.of(filteredStudents.get(zerobasedIndex));
     }
 
     @Override
