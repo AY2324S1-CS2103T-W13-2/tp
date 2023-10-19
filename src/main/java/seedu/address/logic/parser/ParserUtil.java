@@ -183,7 +183,7 @@ public class ParserUtil {
         return new SortIn(trimmedSortIn);
     }
 
-    /** 
+    /**
      * Parses preamble of user input, preamble in edit command can either be index or student's name
      * @param preamble text before the first valid prefix in user input.
      * @return either Index object or Name object.
