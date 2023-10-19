@@ -40,7 +40,7 @@
       "src": "DeveloperGuide.md",
       "title": "Developer Guide",
       "headings": {
-        "ab-3-developer-guide": "AB-3 Developer Guide",
+        "tutorium-developer-guide": "Tutorium Developer Guide",
         "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
@@ -105,17 +105,18 @@
     },
     {
       "src": "UserGuide.md",
-      "title": "User Guide",
       "headings": {
         "tutorium-user-guide": "Tutorium User Guide",
         "quick-start": "Quick start",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
         "adding-a-student-s-data-add": "Adding a student's data: add",
+        "importing-data-from-csv-file-import": "Importing data from .csv file: import",
         "editing-a-student-s-data-edit": "Editing a student's data : edit",
         "searching-for-data-search": "Searching for data : search",
         "deleting-data-delete": "Deleting data : delete",
         "filtering-data-filter": "Filtering data : filter",
+        "sorting-data-sort": "Sorting data : sort",
         "clearing-all-entries-clear": "Clearing all entries : clear",
         "exiting-the-program-exit": "Exiting the program : exit",
         "saving-the-data": "Saving the data",
@@ -131,7 +132,7 @@
       "src": "index.md",
       "title": "",
       "headings": {
-        "addressbook-level-3": "AddressBook Level-3"
+        "tutorium": "Tutorium"
       },
       "headingKeywords": {}
     },
@@ -145,7 +146,7 @@
     },
     {
       "src": "team/kamjiayue.md",
-      "title": "Tiw Kang Xu's Project Portfolio Page",
+      "title": "Kam Jia Yue's Project Portfolio Page",
       "headings": {
         "project-tutorium": "Project: Tutorium"
       },
