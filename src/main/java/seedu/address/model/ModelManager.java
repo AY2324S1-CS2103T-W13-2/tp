@@ -139,7 +139,7 @@ public class ModelManager implements Model {
         requireNonNull(sequence);
         addressBook.sort(sequence);
     }
-    
+
     public Optional<Student> getStudentFromFilteredPersonListByName(Name name) {
         Optional<Student> targetStudent = Optional.ofNullable(null);
         for (Student student : filteredStudents) {
