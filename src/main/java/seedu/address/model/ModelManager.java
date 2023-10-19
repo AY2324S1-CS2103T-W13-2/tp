@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.SortIn;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.SortIn;
 import seedu.address.model.person.Student;
 
 /**
