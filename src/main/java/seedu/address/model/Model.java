@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.SortIn;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.SortIn;
 import seedu.address.model.person.Student;
 
 /**
