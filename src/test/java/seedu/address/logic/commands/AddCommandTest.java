@@ -165,8 +165,10 @@ public class AddCommandTest {
         @Override
         public void updateSortedPersonList(SortIn sequence) {
             throw new AssertionError("You shall not sort.");
+        }
 
-          public Optional<Student> getStudentFromFilteredPersonListByName(Name name) {
+        @Override
+        public Optional<Student> getStudentFromFilteredPersonListByName(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 
