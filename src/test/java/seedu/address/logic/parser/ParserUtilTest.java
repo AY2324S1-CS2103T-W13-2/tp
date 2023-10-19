@@ -211,7 +211,9 @@ public class ParserUtilTest {
     public void parseSortIn_validValueWithoutWhitespace_returnsTag() throws Exception {
         SortIn validSortIn = new SortIn(VALID_SORT_IN);
         assertEquals(validSortIn, ParserUtil.parseSortIn(VALID_SORT_IN));
+    }
 
+    @Test
     public void parseValidIndexPreamble() throws Exception {
         Index expectedIndex = Index.fromOneBased(Integer.parseInt(VALID_INDEX_PREAMBLE.trim()));
         assertEquals(expectedIndex, ParserUtil.parsePreamble(VALID_INDEX_PREAMBLE));
