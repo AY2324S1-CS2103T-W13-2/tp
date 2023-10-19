@@ -26,10 +26,11 @@ Given below are my contributions to the project.
         * Complete Non Functional Requirements(NFRs)
 
 * **Team-based tasks**:
-    * to be added soon
+    * update "edit" feature
+    * merge Lauren's pull request and resolve merge conflict
 
 * **Review/mentoring contributions**:
-    * to be added soon
+    * review Lauren's pull request
 
 * **Contributions beyond the project team**:
     * to be added soon

@@ -44,7 +44,7 @@
     "gender" : "F",
     "secLevel" : "3",
     "nearestMrtStation" : "Bugis",
-    "subjects" : [ ]
+    "subjects" : [ "Physics", "Mathematics" ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -53,7 +53,7 @@
     "gender" : "F",
     "secLevel" : "2",
     "nearestMrtStation" : "Novena",
-    "subjects" : [ ]
+    "subjects" : [ "Mathematics" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",

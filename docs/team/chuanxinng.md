@@ -26,10 +26,11 @@ Given below are my contributions to the project.
         * to be added soon
 
 * **Team-based tasks**:
-    * to be added soon
+    * delete function
+    * import function
 
 * **Review/mentoring contributions**:
-    * to be added soon
+    * Review Lin Chenyu's code
 
 * **Contributions beyond the project team**:
     * to be added soon

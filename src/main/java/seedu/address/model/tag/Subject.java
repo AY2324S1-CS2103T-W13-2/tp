@@ -13,9 +13,9 @@ import java.util.Locale;
  */
 public class Subject {
 
-    public static final String MESSAGE_CONSTRAINTS = "Subjects names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Subjects names should be alphanumeric, and should not be blank";
     private static final String MESSAGE_INVALID_DATE_FORMAT = "Date format should be MMM YYYY (e.g. Jul 2023)";
-    private static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    private static final String VALIDATION_REGEX = "[\\p{Alnum} ]+";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy MMM", Locale.ENGLISH);
 
     public final String subjectName;

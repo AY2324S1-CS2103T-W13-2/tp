@@ -30,7 +30,7 @@ Tutorium is a **desktop application for tuition centre staff** to obtain data an
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add n/John Doe p/12345678 e/johnd@example.com a/John street, block 123, #01-01 g/M l/2 m/KR mrt s/English` : Adds a contact named `John Doe` to the Address Book.
 
    * `delete John Doe` : Deletes the contact with matching name in the current list.
 
@@ -79,7 +79,7 @@ Format: `help`
 
 Adds a student's data to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER l/SEC_LEVEL m/MRT STATION [s/SUBJECT]…​`
 
 <box type="tip" seamless>
 
@@ -87,8 +87,8 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 t/Chemistry`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/Mathematics`
+* `add n/John Doe p/12345678 e/johnd@example.com a/John street, block 123, #01-01 g/M l/2 m/KR mrt s/Chemistry`
+* `add n/Betsy Crowe p/87654321 e/betsycrowe@example.com a/Newgate Prison g/F l/2 m/KR mrt s/Mathematics`
   ![result for 'add n/Joe p/32101234 e/joe@example.com a/John street, block 123, #01-01 t/Math'](images/ug_images/addedJoeResult.png)
 
 ### Editing a student's data : `edit`
@@ -96,34 +96,22 @@ Examples:
 Edits an existing student's data in the address book.
 
 Format:
-1. `edit n/[NAME] or edit e/[EMAIL]` (firstly specify for which student you want to edit)
-2. `e/[NEW_EMAIL] or n/[NEW_NAME]` or `a/[NEW_ADDRESS]` or `t/[NEW_TAG]`  (change a particular field)
-3. `n/[NEW_NAME] e/[NEW_EMAIL]`  or `e/[NEW_EMAIL] t/[NEW_TAG] a/[NEW_ADRESS]` (change multiple fields)
+1. `edit INDEX prefix/[field name] or edit NAME prefix/[field name]` (you can either specify the student you want to edit by index or his/her name)
+2. `edit INDEX prefix1/[field1] prefix2/[field2]`  or `edit NAME prefix/[field] prefix/[field] prefix/[field]` (change multiple fields)
 
-* Edits the student with a specific name or email.
-  - `edit n/[NAME]`
-  - `edit e/[EMAIL]`
-* After the prompt “OK! Now you can edit NAME”
-  - `e/[NEW_EMAIL]`
-  - `n/[NEW_NAME]`
-  - `a/[NEW_ADDRESS]`
-  - `t/[NEW_TAG]`
-* Or you change multiple fields within one command:
-  - `n/[NEW_NAME] e/[NEW_EMAIL]`
-  - `e/[NEW_EMAIL] t/[NEW_TAG] a/[NEW_ADDRESS]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 Examples:
-*  `edit n/joe` specify that you want to do edit operation on the student "joe", if there are more than one student named "joe", you will be prompted to specify student email further: `edit n/joe123@example.com`.
-*  `n/joey e/joey123@example.com` Edits the name and email of the student you specified earlier to be `joey` and `joey123@example.com`.
+*  `edit joee n/joe` specify that you want to edit joee's name to "joe".
+*  `edit 2 n/joey e/joey123@example.com` Edits the student(with index 2)'s name and email to be `joey` and `joey123@example.com`.
    ![result for 'edit Chuan Yuan'](images/ug_images/editChuanYuanResult.png)
 
 ### Searching for data : `search`
 
 Search for people whose names contain the given keyword.
 
-Format: `search [KEYWORD]`
+Format: `search KEYWORD`
 
 * The search is case-insensitive. e.g `joe` will match `Joe`
 * Only the name is searched.
@@ -139,37 +127,32 @@ Examples:
 
 Deletes data of a specified student.
 
-Format: `delete n/[NAME]` or `delete e/[EMAIL]`
+Format: `delete [NAME]` or `delete [INDEX]`
 
-* Deletes the student with the specified `NAME` or `EMAIL`.
-* `NAME`: The deletion is case-insensitive. e.g `joe` will match `Joe`.
-* `EMAIL`: username@domain
+* Deletes the student with the specified `NAME` or `[INDEX]`.
+* `NAME`: The deletion is case-insensitive, but it must be the full name of the student.
 
 Examples:
-* `delete n/John Doe`
-* `delete e/johndoe@gmail.com`
+* `delete John Doe`
+* `delete 1`
 <br></br>
-* `delete n/Chuan Yuan` deletes student data that contains name `Chuan Yuan`
+* `delete Chuan Yuan` deletes student data that contains name `Chuan Yuan`
   ![result for 'delete Chuan Yuan'](images/ug_images/deleteJoeResult.png)
 
-### Grouping data : `group`
+### Filtering data : `filter`
 
-Shows the list of students data that holds a particular tag.
+Shows the list of students data that fulfills all given conditions.
 
-Format: `group /by [TAG_NAME]`
+Format: `filter prefix/FIELD_VALUE [MORE FIELDS]`
 
-* TAG_NAME: Case sensitive string
-* The student list shows only the students whose data is tagged with “SubjectA” tag.
-* Case couldn’t find any data with the tag
-  Example: `group /by QWERTY`
-  Shows error message: `Tag does not exist.`
-* Case using wrong format
-  Example: `group SubjectA` or `group by SubjectA`
-  Shows error message: `Group usage: group /by [TAG_NAME]`
+* FIELD_VALUE: Case-sensitive string.
+* The student list shows only the students whose data fulfills all given conditions.
+* At least one condition must be provided.
 
 Examples:
-* `group /by Maths` returns `Chuan Yuan`, `Li Yuan` and `Alfred` <br>
-  ![result for 'group Maths'](images/ug_images/groupMathsResult.png)
+* `filter g/F s/English s/Physics`
+* `filter s/Maths` returns `Chuan Yuan`, `Li Yuan` and `Alfred` <br>
+  ![result for 'filter Maths'](images/ug_images/filterMathsResult.png)
 
 ### Clearing all entries : `clear`
 

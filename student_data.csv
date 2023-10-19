@@ -1,0 +1,11 @@
+﻿Name,Phone Number,Email,Address,Gender,Sec level,Nearest Mrt station,Subject,
+Emma,87459632,emma@example.com,"emma street, block 123, #01-01",F,2,Orchard MRT,English,Chinese
+Olivia,21384765,olivia@example.com,"olivia street, block 123, #01-01",F,1,Jurong East MRT,Mathematics,
+Benjamin,56983214,benjamin@example.com,"benjamin street, block 123, #01-01",M,3,Bugis MRT,Physics,
+Sophia,72519843,sophia@example.com,"sophia street, block 123, #01-01",F,2,Jurong East MRT,Mathematics,
+William,34872651,william@example.com,"william street, block 123, #01-01",M,2,Dhoby Ghaut MRT,Physics,Mathematics
+Eva,98125736,eva@example.com,"eva street, block 123, #01-01",F,1,Chinatown MRT,Physics,
+James,63592418,james@example.com,"james street, block 123, #01-01",M,3,Tampines MRT,Chemistry,Physics
+Alex,47261398,alex@example.com,"alex street, block 123, #01-01",M,3,HarbourFront MRT,English,Chinese
+Martin,18634729,martin@example.com,"martin street, block 123, #01-01",M,1,Clementi MRT,English,Mathematics
+Wilson,59321647,wilson@example.com,"wilson street, block 123, #01-01",M,1,HarbourFront MRT,Mathematics,Physics

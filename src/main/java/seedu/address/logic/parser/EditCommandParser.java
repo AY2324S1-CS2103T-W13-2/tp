@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Subject;
 
 /**
@@ -38,10 +39,16 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_GENDER, PREFIX_SEC_LEVEL, PREFIX_NEAREST_MRT_STATION, PREFIX_SUBJECT);
 
-        Index index;
-
+        Index index = null;
+        Name name = null;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            Object parsedPreamble = ParserUtil.parsePreamble(argMultimap.getPreamble());
+            if (parsedPreamble instanceof Index) {
+                index = (Index) parsedPreamble;
+            } else {
+                name = (Name) parsedPreamble;
+            }
+
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
@@ -79,7 +86,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return name == null ? new EditCommand(index, editPersonDescriptor)
+                : new EditCommand(name, editPersonDescriptor);
     }
 
     /**

@@ -15,12 +15,16 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordPredicate;
 import seedu.address.model.person.Student;
+import seedu.address.model.person.StudentPredicateList;
+import seedu.address.model.person.StudentTakesSubjectPredicate;
+import seedu.address.model.tag.Subject;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -44,6 +48,14 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
+        Student person = new PersonBuilder().build();
+        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + PersonBuilder.DEFAULT_NAME);
+        assertEquals(new DeleteCommand(person.getName()), command);
+    }
+
+    @Test
+    public void parseCommand_deleteIndex() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
@@ -70,6 +82,17 @@ public class AddressBookParserTest {
         SearchCommand command = (SearchCommand) parser.parseCommand(
                 SearchCommand.COMMAND_WORD + " " + keyword);
         assertEquals(new SearchCommand(new NameContainsKeywordPredicate(keyword)), command);
+    }
+
+    @Test
+    public void parseCommand_filter() throws Exception {
+        String condition = "s/English";
+        FilterCommand command = (FilterCommand) parser.parseCommand(
+                FilterCommand.COMMAND_WORD + " " + condition);
+        StudentTakesSubjectPredicate predicate = new StudentTakesSubjectPredicate(new Subject("English"));
+        StudentPredicateList newList = new StudentPredicateList();
+        newList.add(predicate);
+        assertEquals(new FilterCommand(newList), command);
     }
 
     @Test

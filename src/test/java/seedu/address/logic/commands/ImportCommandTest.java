@@ -5,11 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.HOON;
+import static seedu.address.testutil.TypicalPersons.IDA;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -18,79 +22,107 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.SortIn;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Student;
-import seedu.address.testutil.PersonBuilder;
 
-public class AddCommandTest {
+class ImportCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new ImportCommand(null, "test_data.csv"));
+        assertThrows(NullPointerException.class, () -> new ImportCommand(new ArrayList<>(), null));
+    }
+
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        Path relativePath = Paths.get("src", "test", "data", "ImportDataTest");
+        String fileName1 = relativePath + "\\" + "test_data_successful.csv";
+        List<Student> expectedList1 = new ArrayList<>();
+        expectedList1.add(AMY);
+        expectedList1.add(BOB);
+
+        assertThrows(NullPointerException.class, () -> new ImportCommand(expectedList1, fileName1).execute(null));
     }
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Student validStudent = new PersonBuilder().build();
+        Path relativePath = Paths.get("src", "test", "data", "ImportDataTest");
+        String fileName1 = relativePath + "\\" + "test_data_successful.csv";
+        List<Student> expectedList1 = new ArrayList<>();
+        expectedList1.add(AMY);
+        expectedList1.add(BOB);
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub);
+        CommandResult commandResult = new ImportCommand(expectedList1, fileName1).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validStudent)),
+        assertEquals(String.format(ImportCommand.MESSAGE_SUCCESS),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Student validStudent = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithPerson(validStudent);
+        Path relativePath = Paths.get("src", "test", "data", "ImportDataTest");
+        String fileName1 = relativePath + "\\" + "test_data_duplicates_name.csv";
+        List<Student> expectedList1 = new ArrayList<>();
+        expectedList1.add(AMY);
+        expectedList1.add(BOB);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        ImportCommand importCommand = new ImportCommand(expectedList1, fileName1);
+        ModelStub modelStub = new ModelStubWithPerson(AMY);
+
+        assertThrows(
+                CommandException.class,
+                "Amy Bee (amy@example.com), "
+                        + ImportCommand.MESSAGE_DUPLICATE_PERSON, () -> importCommand.execute(modelStub)
+        );
     }
 
     @Test
     public void equals() {
-        Student alice = new PersonBuilder().withName("Alice").build();
-        Student bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Path relativePath = Paths.get("src", "test", "data", "ImportDataTest");
+        String fileName1 = relativePath + "\\" + "test_data_successful.csv";
+        List<Student> expectedList1 = new ArrayList<>();
+        expectedList1.add(AMY);
+        expectedList1.add(BOB);
+        ImportCommand importCommand1 = new ImportCommand(expectedList1, fileName1);
+
+        String fileName2 = relativePath + "\\" + "test_data_no_subjects.csv";
+        List<Student> expectedList2 = new ArrayList<>();
+        expectedList2.add(HOON);
+        expectedList2.add(IDA);
+        ImportCommand importCommand2 = new ImportCommand(expectedList2, fileName2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(importCommand1.equals(importCommand1));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        ImportCommand importCommandCopy = new ImportCommand(expectedList1, fileName1);
+        assertTrue(importCommand1.equals(importCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(importCommand1.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(importCommand1.equals(null));
 
         // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(importCommand1.equals(importCommand2));
     }
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
-        assertEquals(expected, addCommand.toString());
+        Path relativePath = Paths.get("src", "test", "data", "ImportDataTest");
+        String fileName = relativePath + "\\" + "test_data_successful.csv";
+        ImportCommand importCommand = new ImportCommand(new ArrayList<>(), fileName);
+        String expected = ImportCommand.class.getCanonicalName() + "{Import from =" + fileName + "}";
+        assertEquals(expected, importCommand.toString());
     }
 
-    /**
-     * A default model stub that have all of the methods failing.
-     */
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -124,7 +156,6 @@ public class AddCommandTest {
 
         @Override
         public void addPerson(Student student) {
-            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -163,10 +194,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateSortedPersonList(SortIn sequence) {
-            throw new AssertionError("You shall not sort.");
-
-          public Optional<Student> getStudentFromFilteredPersonListByName(Name name) {
+        public Optional<Student> getStudentFromFilteredPersonListByName(Name name) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -179,7 +207,7 @@ public class AddCommandTest {
     /**
      * A Model stub that contains a single student.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithPerson extends ImportCommandTest.ModelStub {
         private final Student student;
 
         ModelStubWithPerson(Student student) {
@@ -197,7 +225,7 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the student being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
+    private class ModelStubAcceptingPersonAdded extends ImportCommandTest.ModelStub {
         final ArrayList<Student> personsAdded = new ArrayList<>();
 
         @Override
@@ -217,5 +245,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

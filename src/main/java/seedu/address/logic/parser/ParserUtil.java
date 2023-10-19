@@ -183,4 +183,30 @@ public class ParserUtil {
         return new SortIn(trimmedSortIn);
     }
 
+     * Parses preamble of user input, preamble in edit command can either be index or student's name
+     * @param preamble text before the first valid prefix in user input.
+     * @return either Index object or Name object.
+     * @throws ParseException
+     */
+    public static Object parsePreamble(String preamble) throws ParseException {
+        requireNonNull(preamble);
+        preamble = preamble.trim();
+        // Preamble, if exist, can either be index or student's name
+        if (isInteger(preamble)) {
+            return parseIndex(preamble);
+        }
+        if (!preamble.matches("^[a-zA-Z ]+$")) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return parseName(preamble);
+    }
+
+    private static boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 }
