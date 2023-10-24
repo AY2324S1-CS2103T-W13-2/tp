@@ -1,0 +1,9 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes command;
+:List of students fulfilling all specified predicates is displayed;
+stop
+@enduml
