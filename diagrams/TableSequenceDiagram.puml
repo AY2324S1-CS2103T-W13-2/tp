@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "f:TableCommand" as TableCommand LOGIC_COLOR
+participant ":SubjectTableCommandResult" as SubjectTableCommandResult LOGIC_COLOR
+end box
+
+
+[-> LogicManager : execute("table s/")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("table s/")
+activate AddressBookParser
+
+create TableCommand
+AddressBookParser -> TableCommand : TableCommand("s/")
+activate TableCommand
+
+TableCommand --> AddressBookParser
+deactivate TableCommand
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> TableCommand : execute()
+activate TableCommand
+
+create SubjectTableCommandResult
+TableCommand -> SubjectTableCommandResult
+activate SubjectTableCommandResult
+
+SubjectTableCommandResult --> TableCommand
+deactivate SubjectTableCommandResult
+
+TableCommand --> LogicManager : result
+deactivate TableCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

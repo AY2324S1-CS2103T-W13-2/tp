@@ -1,0 +1,11 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes table command;
+:Table consisting of number of students categorized either
+gender, subject or sec-level specified by user pop out
+as another window;
+stop
+@enduml
