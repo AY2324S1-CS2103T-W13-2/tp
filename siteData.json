@@ -122,6 +122,7 @@
         "editing-a-student-s-data-edit": "Editing a student's data : edit",
         "searching-for-data-search": "Searching for data : search",
         "deleting-data-delete": "Deleting data : delete",
+        "update-sec-level-uplevel-undolevel": "update sec level : uplevel, undolevel",
         "filtering-data-filter": "Filtering data : filter",
         "sorting-data-sort": "Sorting data : sort",
         "clearing-all-entries-clear": "Clearing all entries : clear",
