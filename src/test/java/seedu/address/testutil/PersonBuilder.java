@@ -9,6 +9,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.MrtStation;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.SecLevel;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Subject;
@@ -36,6 +37,8 @@ public class PersonBuilder {
     private MrtStation nearestMrtStation;
     private Set<Subject> subjects;
 
+    private Remark remark;
+
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
@@ -48,6 +51,7 @@ public class PersonBuilder {
         secLevel = new SecLevel(DEFAULT_SEC_LEVEL);
         nearestMrtStation = new MrtStation(DEFAULT_NEAREST_MRT_STATION);
         subjects = new HashSet<>();
+        remark = new Remark();
     }
 
     /**
@@ -62,6 +66,7 @@ public class PersonBuilder {
         secLevel = studentToCopy.getSecLevel();
         nearestMrtStation = studentToCopy.getNearestMrtStation();
         subjects = new HashSet<>(studentToCopy.getSubjects());
+        remark = studentToCopy.getRemark();
     }
 
     /**
@@ -121,6 +126,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Remark} of the {@code Student} that we are building.
+     */
+    public PersonBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Student} that we are building.
      */
     public PersonBuilder withNearestMrtStation(String nearestMrtStation) {
@@ -136,7 +149,7 @@ public class PersonBuilder {
     public Student build() {
         return new Student(name, phone, email, address,
                 gender, secLevel, nearestMrtStation,
-                subjects);
+                subjects, remark);
     }
 
 }

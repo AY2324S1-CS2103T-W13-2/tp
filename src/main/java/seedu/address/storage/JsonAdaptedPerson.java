@@ -16,6 +16,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.MrtStation;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.SecLevel;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Subject;
@@ -37,6 +38,8 @@ class JsonAdaptedPerson {
 
     private final List<JsonAdaptedTag> subjects = new ArrayList<>();
 
+    private final String remark;
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given student details.
      */
@@ -45,7 +48,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("gender") String gender, @JsonProperty("secLevel") String secLevel,
             @JsonProperty("nearestMrtStation") String nearestMrtStation,
-            @JsonProperty("tags") List<JsonAdaptedTag> subjects) {
+            @JsonProperty("tags") List<JsonAdaptedTag> subjects, @JsonProperty("remark") String remark) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -56,6 +59,16 @@ class JsonAdaptedPerson {
         if (subjects != null) {
             this.subjects.addAll(subjects);
         }
+        this.remark = remark;
+    }
+
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("gender") String gender, @JsonProperty("secLevel") String secLevel,
+                             @JsonProperty("nearestMrtStation") String nearestMrtStation,
+                             @JsonProperty("tags") List<JsonAdaptedTag> subjects) {
+        this(name, phone, email, address, gender, secLevel, nearestMrtStation, subjects, "");
     }
 
     /**
@@ -72,6 +85,7 @@ class JsonAdaptedPerson {
         subjects.addAll(source.getSubjects().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        remark = source.getRemark().value;
     }
 
     /**
@@ -148,9 +162,10 @@ class JsonAdaptedPerson {
         }
         final MrtStation modelNearestMrtStation = new MrtStation(nearestMrtStation);
 
+        final Remark remark = new Remark(this.remark);
         final Set<Subject> modelSubjects = new HashSet<>(personSubjects);
         return new Student(modelName, modelPhone, modelEmail, modelAddress,
-                modelGender, modelSecLevel, modelNearestMrtStation, modelSubjects);
+                modelGender, modelSecLevel, modelNearestMrtStation, modelSubjects, remark);
     }
 
 }

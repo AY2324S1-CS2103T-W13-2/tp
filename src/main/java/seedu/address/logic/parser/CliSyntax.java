@@ -19,5 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_VISUAL_TYPE = new Prefix("v/");
     public static final Prefix PREFIX_YEAR = new Prefix("y/");
 
+    public static final Prefix PREFIX_REMARK = new Prefix("r/");
+
 
 }

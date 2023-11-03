@@ -31,6 +31,7 @@ import seedu.address.model.person.Gender;
 import seedu.address.model.person.MrtStation;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Remark;
 import seedu.address.model.person.SecLevel;
 import seedu.address.model.person.Student;
 import seedu.address.model.tag.Subject;
@@ -131,10 +132,11 @@ public class EditCommand extends Command {
         MrtStation updatedNearestMrtStation = editPersonDescriptor
                 .getNearestMrtStation().orElse(studentToEdit.getNearestMrtStation());
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(studentToEdit.getSubjects());
+        Remark updatedRemark = editPersonDescriptor.getRemark().orElse(studentToEdit.getRemark());
 
         return new Student(updatedName, updatedPhone, updatedEmail,
                 updatedAddress, updatedGender, updatedSecLevel,
-                updatedNearestMrtStation, updatedSubjects);
+                updatedNearestMrtStation, updatedSubjects, updatedRemark);
     }
 
     @Override
@@ -176,6 +178,8 @@ public class EditCommand extends Command {
         private MrtStation nearestMrtStation;
         private Set<Subject> subjects;
 
+        private Remark remark;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -191,6 +195,7 @@ public class EditCommand extends Command {
             setSecLevel(toCopy.secLevel);
             setNearestMrtStation(toCopy.nearestMrtStation);
             setSubjects(toCopy.subjects);
+            setRemark(toCopy.remark);
         }
 
         /**
@@ -274,6 +279,14 @@ public class EditCommand extends Command {
             return (subjects != null) ? Optional.of(Collections.unmodifiableSet(subjects)) : Optional.empty();
         }
 
+        public void setRemark(Remark remark) {
+            this.remark = remark;
+        }
+
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
+        }
+
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -294,7 +307,8 @@ public class EditCommand extends Command {
                     && Objects.equals(secLevel, otherEditPersonDescriptor.secLevel)
                     && Objects.equals(nearestMrtStation,
                         otherEditPersonDescriptor.nearestMrtStation)
-                    && Objects.equals(subjects, otherEditPersonDescriptor.subjects);
+                    && Objects.equals(subjects, otherEditPersonDescriptor.subjects)
+                    && Objects.equals(remark, otherEditPersonDescriptor.remark);
         }
 
         @Override
@@ -308,6 +322,7 @@ public class EditCommand extends Command {
                     .add("secLevel", secLevel)
                     .add("nearestMrtStation", nearestMrtStation)
                     .add("subjects", subjects)
+                    .add("remark", remark)
                     .toString();
         }
     }

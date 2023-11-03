@@ -34,6 +34,7 @@
       <Label fx:id="gender" styleClass="cell_small_label" text="\$gender" />
       <Label fx:id="secLevel" styleClass="cell_small_label" text="\$secLevel" />
       <Label fx:id="nearestMrtStation" styleClass="cell_small_label" text="\$nearestMrtStation" />
+      <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
     </VBox>
   </GridPane>
 </HBox>

@@ -32,8 +32,11 @@ public class Student {
     private final Address address;
     private final Gender gender;
     private final SecLevel secLevel;
+
     private final MrtStation nearestMrtStation;
     private final Set<Subject> subjects = new HashSet<>();
+
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
@@ -41,9 +44,9 @@ public class Student {
     public Student(Name name, Phone phone, Email email,
                    Address address, Gender gender,
                    SecLevel secLevel, MrtStation nearestMrtStation,
-                   Set<Subject> subjects) {
+                   Set<Subject> subjects, Remark remark) {
         requireAllNonNull(name, phone, email, address, gender,
-                secLevel, nearestMrtStation, subjects);
+                secLevel, nearestMrtStation, subjects, remark);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -52,6 +55,15 @@ public class Student {
         this.secLevel = secLevel;
         this.nearestMrtStation = nearestMrtStation;
         this.subjects.addAll(subjects);
+        this.remark = remark;
+    }
+
+    public Student(Name name, Phone phone, Email email,
+                   Address address, Gender gender,
+                   SecLevel seclevel, MrtStation nearestMrtStation,
+                   Set<Subject> subjects) {
+        this(name, phone, email, address, gender, seclevel, nearestMrtStation,
+        subjects, new Remark(""));
     }
 
     public Name getName() {
@@ -95,6 +107,13 @@ public class Student {
      */
     public int getSecLevelValue() {
         return this.secLevel.getValue();
+    }
+
+    /**
+     * Returns the remark of the student
+     */
+    public Remark getRemark() {
+        return this.remark;
     }
 
     /**

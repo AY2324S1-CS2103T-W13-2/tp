@@ -47,6 +47,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane subjects;
 
+    @FXML
+    private Label remark;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Student} and index to display.
      */
@@ -65,6 +68,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(subject -> subject.getSubjectName()))
                 .forEach(subject -> subjects.getChildren().add(new Label(subject.getSubjectName()
                         + " (enrolled in: " + subject.getEnrolDate() + ")")));
+        remark.setText(student.getRemark().value);
 
     }
 }
