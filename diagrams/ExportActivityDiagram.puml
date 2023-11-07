@@ -1,0 +1,11 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User created a visual representation;
+:User executes export command;
+:User choose the path to save the image exported;
+:Exported image is saved to the chosen location;
+stop
+@enduml
