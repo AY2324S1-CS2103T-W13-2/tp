@@ -1,0 +1,13 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes command;
+if () then ([missing attributes])
+    :Return error message to user;
+else ([else])
+    :Add student to AddressBook;
+endif
+stop
+@enduml

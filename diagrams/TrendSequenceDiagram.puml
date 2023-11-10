@@ -1,0 +1,64 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TrendCommandParser" as TrendCommandParser LOGIC_COLOR
+participant ":TrendCommand" as TrendCommand LOGIC_COLOR
+participant ":TrendCommandResult" as TrendCommandResult LOGIC_COLOR
+end box
+
+
+[-> LogicManager : execute("trend 2023")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("trend 2023")
+activate AddressBookParser
+
+create TrendCommandParser
+AddressBookParser -> TrendCommandParser
+activate TrendCommandParser
+
+TrendCommandParser --> AddressBookParser
+deactivate TrendCommandParser
+
+AddressBookParser -> TrendCommandParser : parse("2023")
+activate TrendCommandParser
+
+create TrendCommand
+TrendCommandParser -> TrendCommand
+activate TrendCommand
+
+TrendCommand --> TrendCommandParser
+deactivate TrendCommand
+
+TrendCommandParser --> AddressBookParser
+deactivate TrendCommandParser
+TrendCommandParser -[hidden]-> AddressBookParser
+destroy TrendCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> TrendCommand : execute()
+activate TrendCommand
+
+create TrendCommandResult
+TrendCommand -> TrendCommandResult
+activate TrendCommandResult
+
+TrendCommandResult --> TrendCommand
+deactivate TrendCommandResult
+
+TrendCommand --> LogicManager
+deactivate TrendCommand
+
+[<-- LogicManager
+deactivate LogicManager
+
+
+@enduml

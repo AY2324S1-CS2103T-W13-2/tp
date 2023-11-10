@@ -1,0 +1,10 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User executes trend command;
+:Line chart of (number of students ~ time) within one year specified by user pops out
+as another window;
+stop
+@enduml
