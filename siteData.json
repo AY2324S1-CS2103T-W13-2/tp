@@ -52,6 +52,7 @@
         "common-classes": "Common classes",
         "implementation": "Implementation",
         "filter-feature": "Filter feature",
+        "uplevel-undolevel-feature": "uplevel, undolevel feature",
         "sort-feature": "Sort feature",
         "import-feature": "Import feature",
         "table-feature": "Table feature",

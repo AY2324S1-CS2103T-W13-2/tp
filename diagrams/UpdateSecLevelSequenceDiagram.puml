@@ -1,0 +1,67 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "f:UpdateSecLevelCommand" as UpdateSecLevelCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("uplevel")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("uplevel")
+activate AddressBookParser
+
+create UpdateSecLevelCommand
+AddressBookParser -> UpdateSecLevelCommand
+activate UpdateSecLevelCommand
+
+UpdateSecLevelCommand --> AddressBookParser : f
+deactivate UpdateSecLevelCommand
+
+AddressBookParser --> LogicManager : f
+deactivate AddressBookParser
+
+LogicManager -> UpdateSecLevelCommand : execute()
+activate UpdateSecLevelCommand
+
+UpdateSecLevelCommand -> Model : setPerson(student, updatedStudent)
+note right
+    updatedStudent is the
+    edited student with sec
+    level increased by one.
+end note
+
+activate Model
+
+UpdateSecLevelCommand -> Model : deletePerson(student)
+note right
+    student is the sec 4
+    student to be removed.
+end note
+
+Model --> UpdateSecLevelCommand
+deactivate Model
+
+create CommandResult
+UpdateSecLevelCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UpdateSecLevelCommand
+deactivate CommandResult
+
+UpdateSecLevelCommand --> LogicManager : result
+deactivate UpdateSecLevelCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
