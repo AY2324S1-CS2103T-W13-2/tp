@@ -5,13 +5,13 @@ skinparam ArrowFontSize 12
 
 start
 :User executes command;
-if (Is an uplevel command?) then (yes)
+if (Is an uplevel command?) then ([yes])
     :Increase the sec levels for all non-sec4 students;
     :Remove all sec 4 students;
-else (no)
-    if (Is there an undone uplevel operation left since open application?) then (yes)
+else ([no])
+    if (Is there an undone uplevel operation left since open application?) then ([yes])
         :Revert the students records to be before previous uplevel operation;
-    else (no)
+    else ([no])
         :Show error message;
     endif
 endif
