@@ -41,7 +41,6 @@
       "title": "Developer Guide",
       "headings": {
         "tutorium-developer-guide": "Tutorium Developer Guide",
-        "acknowledgements": "Acknowledgements",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
         "architecture": "Architecture",
@@ -52,7 +51,7 @@
         "common-classes": "Common classes",
         "implementation": "Implementation",
         "filter-feature": "Filter feature",
-        "uplevel-undolevel-feature": "uplevel, undolevel feature",
+        "uplevel-undolevel-feature": "Uplevel, Undolevel feature",
         "sort-feature": "Sort feature",
         "import-feature": "Import feature",
         "table-feature": "Table feature",
