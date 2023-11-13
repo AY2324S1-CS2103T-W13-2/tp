@@ -41,6 +41,7 @@
       "title": "Developer Guide",
       "headings": {
         "tutorium-developer-guide": "Tutorium Developer Guide",
+        "table-of-contents": "Table of Contents",
         "setting-up-getting-started": "Setting up, getting started",
         "design": "Design",
         "architecture": "Architecture",
